@@ -1,0 +1,43 @@
+.centered-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.task-manager {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    max-width: 800px;
+    max-height: 500px;
+    // border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    // border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    background: #f8f1db;
+    padding: 35px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.title {
+    font-size: x-large;
+}
+
+.task-list {
+    display: flex;
+    flex-grow: 1;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background: rgb(246, 246, 246);
+    padding: 35px;
+}
