@@ -1,3 +1,5 @@
+@import '../../../main-styles.scss';
+
 .centered-content {
     display: flex;
     justify-content: center;
@@ -31,13 +33,60 @@
 
 .title {
     font-size: x-large;
+    color: black;
 }
 
 .task-list {
+    color: black;
     display: flex;
+    flex-direction: column;
     flex-grow: 1;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     background: rgb(246, 246, 246);
     padding: 35px;
+}
+
+.list-menu {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    flex-grow: 1;
+}
+
+.list-menu-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    color: black;
+    &:hover {
+        background: #FFCAC8;
+    }
+    &.is-active{
+        background-color: #FF9E9E;
+    }
+}
+
+.task {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    &:not(.complete){ //Coolest thing here!
+        cursor: pointer;
+        transition:  box-shadow 0.2s ease, transform 0.2s ease;
+        &:hover {
+            box-shadow: 0 0 0 5px #eeeeee;
+        }
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+    &.complete {
+        text-decoration: line-through;
+        opacity: 0.5;
+    }
 }
