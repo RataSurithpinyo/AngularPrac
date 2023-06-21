@@ -79,6 +79,22 @@ app.get('/lists/:listId/tasks', async (req,res) => { // get all tasks of a singl
     })
 }) 
 
+app.get('/lists/:listId/tasks/:taskId', async (req,res) => {
+    try {
+        const task = await Task.find({
+            _id: req.params.taskId,
+            _listId: req.params.listId
+            })
+        if(!task){
+            return res.status(400).json({success:false});
+        }
+        res.status(200).json({success:true, data:task});
+    } catch(err) {
+        console.log(err)
+        res.status(400).json({success:false})
+    }
+}) 
+
 app.post('/lists/:listId/tasks', async (req,res) => {
     try {
         const taskData = req.body;
@@ -92,6 +108,44 @@ app.post('/lists/:listId/tasks', async (req,res) => {
 }) 
 
 
+app.patch('/lists/:listId/tasks/:taskId', async (req,res) => {
+    try {
+        const task = await Task.findOneAndUpdate({ //find a list and task with the
+            //specific ID and then update that req.body
+            _id: req.params.taskId,
+            _listId: req.params.listId
+            }, req.body, {
+            new: true,
+            runValidators: true
+        })
+        if(!task){
+            return res.status(400).json({success:false});
+        }
+        res.status(200).json({success:true, data:task});
+    } catch(err) {
+        console.log(err)
+        res.status(400).json({success:false})
+    }
+}) 
+
+app.delete('/lists/:listId/tasks/:taskId', async (req,res) => {
+    try {
+        const task = await Task.findOneAndRemove({
+            _id: req.params.taskId,
+            _listId: req.params.listId
+            }, req.body, {
+            new: true,
+            runValidators: true
+        })
+        if(!task){
+            return res.status(400).json({success:false});
+        }
+        res.status(200).json({success:true, data:task});
+    } catch(err) {
+        console.log(err)
+        res.status(400).json({success:false})
+    }
+}) 
 
 app.listen(3000, () => {
     console.log("server is listening on port 3000")
