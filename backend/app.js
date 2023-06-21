@@ -25,15 +25,6 @@ app.post('/lists', async (req,res) => { //create a new list
         console.log(err)
         res.status(400).json({success:false})
     }
-    // get data form JSON request body
-    //let title = req.body.title
-    //console.log(title)
-    // let newList = new List({
-    //     title
-    // })
-    // newList.save().then((lists) => { //not sure about *lists* var
-    //     res.send(lists)
-    // })
     // .create does .save internally
 })
 
@@ -71,6 +62,36 @@ app.delete('/lists/:id', async (req,res) => {
         res.status(400).json({success:false})
     }
 })
+
+app.get('/lists/tasks', async (req,res) => {
+    Task.find().then((tasks) => {
+        res.send(tasks)
+    })
+}) 
+
+
+app.get('/lists/:listId/tasks', async (req,res) => { // get all tasks of a single list
+    //console.log("req.params.listId: "+ req.params.listId)
+    Task.find({
+        _listId: req.params.listId
+    }).then((tasks) => {
+        res.send(tasks)
+    })
+}) 
+
+app.post('/lists/:listId/tasks', async (req,res) => {
+    try {
+        const taskData = req.body;
+        taskData._listId = req.params.listId; 
+        const newTask = await Task.create(taskData);
+        res.status(400).json({success:true, data:newTask});
+    } catch(err) {
+        console.log(err)
+        res.status(400).json({success:false})
+    }
+}) 
+
+
 
 app.listen(3000, () => {
     console.log("server is listening on port 3000")
