@@ -3,13 +3,12 @@
         <h1 class="title">Create a new list</h1>
         <div class="field is-grouped">
             <p class="control is-expanded">
-              <input class="input has-background-light is-medium" type="text" placeholder="Find a repository">
+              <input #listTitleInput class="input has-background-light is-medium" type="text" placeholder="Enter a list title">
             </p>
-            <p class="control">
-              <a class="button is-primary is-medium">
-                Create
-              </a>
-            </p>
-          </div>
+        </div>
+        <div class="button-bar">
+            <button class="button is-info is-inverted" routerLink="/">Cancel</button>
+            <button class="button is-info" style="margin-left: 7px;" (click)="createList(listTitleInput.value)">Create</button>
+        </div>
     </div>
 </div>

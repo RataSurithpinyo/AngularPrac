@@ -22,7 +22,7 @@ app.get('/lists', (req,res) => {
 app.post('/lists', async (req,res) => { //create a new list
     try {
         const list = await List.create(req.body);
-        res.status(400).json({success:true, data:list});
+        res.status(200).json({success:true, data:list});
     } catch(err) {
         console.log(err)
         res.status(400).json({success:false})
@@ -102,7 +102,7 @@ app.post('/lists/:listId/tasks', async (req,res) => {
         const taskData = req.body;
         taskData._listId = req.params.listId; 
         const newTask = await Task.create(taskData);
-        res.status(400).json({success:true, data:newTask});
+        res.status(200).json({success:true, data:newTask});
     } catch(err) {
         console.log(err)
         res.status(400).json({success:false})

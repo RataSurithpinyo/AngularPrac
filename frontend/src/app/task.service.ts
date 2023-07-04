@@ -8,7 +8,7 @@ export class TaskService {
   constructor(private webReqService: WebRequestService) { }
 
   createList(title: string) {
-    console.log("Function gets title successfully")
+    //console.log("Function gets title successfully")
     return this.webReqService.post('lists', {title});
   }
 
