@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TaskService } from 'src/app/task.service';
 
 @Component({
   selector: 'app-task-view',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class TaskViewComponent {
 
+  constructor(private taskService: TaskService) { }
+  createNewList() {
+      //console.log("In a function")
+      this.taskService.createList('Testing').subscribe((response:any) => {
+      console.log("Success!")
+      console.log("This is a response: " + response);
+    });
+  }
 }
