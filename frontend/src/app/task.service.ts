@@ -24,4 +24,8 @@ export class TaskService {
     //console.log("Function gets title successfully")
     return this.webReqService.post(`lists/${listId}/tasks`, {title})
   }
+
+  complete(task: any) {
+    return this.webReqService.patch(`lists/${task._listId}/tasks/${task._id}`, {completed: !task.completed})
+  }
 }

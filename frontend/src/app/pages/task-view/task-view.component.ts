@@ -10,6 +10,7 @@ import { TaskService } from 'src/app/task.service';
 export class TaskViewComponent implements OnInit {
   lists: any;
   tasks: any;
+
   constructor(private taskService: TaskService, private route: ActivatedRoute) { }
   ngOnInit() {
     //console.log(this.route)
@@ -24,6 +25,14 @@ export class TaskViewComponent implements OnInit {
       //console.log(typeof lists)
       //console.log(lists)
       this.lists = lists
+    })
+  }
+
+  onTaskClick(task: any){
+    this.taskService.complete(task).subscribe(() => {
+      //console.log("updated successfully")
+      //console.log(task.completed)
+      task.completed = !task.completed
     })
   }
 }
