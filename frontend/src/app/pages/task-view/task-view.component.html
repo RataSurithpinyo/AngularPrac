@@ -3,11 +3,9 @@
         <div class="sidebar">
             <h1 class="title">Lists</h1>
             <div class="list-menu">
-                <div class="list-menu-item">
-                    <p>List #1</p>
-                </div>
-                <div class="list-menu-item">
-                    <p>List #1</p>
+                <div class="list-menu-item" *ngFor="let list of lists" [routerLink]="['/lists',list._id]" routerLinkActive="is-active">
+                    <!-- using [] to pass the variable -->
+                    <p>{{list.title}}</p>
                 </div>
             </div>
             <button class="button is-primary" routerLink="/new-list">+ New List</button>
@@ -15,12 +13,19 @@
         
         <div class="task-list">
             <h1 class="title">Tasks</h1>
-            <div class="task">
-                <p>To Do</p>
+            <div class="task" *ngFor="let task of tasks">
+                <p>{{task.title}}</p>
             </div>
-            <div class="task complete">
+            <!-- <div class="task complete">
                 <p>To Do</p>
+            </div> -->
+            <div class="add-button">
+                <button class="button" routerLink="./new-task">
+                    <span>
+                        <i class="bi-plus-circle-fill" style="font-size: 1.3rem;"></i>
+                    </span>
+                  </button>
             </div>
-        </div>
+        </div>    
     </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { TaskService } from 'src/app/task.service';
 
 @Component({
@@ -6,15 +7,23 @@ import { TaskService } from 'src/app/task.service';
   templateUrl: './task-view.component.html',
   styleUrls: ['./task-view.component.scss']
 })
-export class TaskViewComponent {
-
-  constructor(private taskService: TaskService) { }
-  ngOnInit() {}
-  createNewList() {
-      //console.log("In a function")
-      this.taskService.createList('Testing').subscribe((response:any) => {
-      //console.log("Success!")
-      console.log("This is a response: " + JSON.stringify(response));
-    });
+export class TaskViewComponent implements OnInit {
+  lists: any;
+  tasks: any;
+  constructor(private taskService: TaskService, private route: ActivatedRoute) { }
+  ngOnInit() {
+    //console.log(this.route)
+    this.route.params.subscribe((params: Params) => {
+      if (params['listId'] != undefined) {
+        this.taskService.getTasks(params['listId']).subscribe((tasks) => { //getting the response back
+          this.tasks = tasks
+        })
+      }
+    })
+    this.taskService.getLists().subscribe((lists) => { //getting the response back
+      //console.log(typeof lists)
+      //console.log(lists)
+      this.lists = lists
+    })
   }
 }

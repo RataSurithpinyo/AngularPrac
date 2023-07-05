@@ -9,7 +9,19 @@ export class TaskService {
 
   createList(title: string) {
     //console.log("Function gets title successfully")
-    return this.webReqService.post('lists', {title});
+    return this.webReqService.post('lists', {title})
   }
 
+  getLists() {
+    return this.webReqService.get('lists')
+  }
+
+  getTasks(listId: string) {
+    return this.webReqService.get(`lists/${listId}/tasks`)
+  }
+
+  createTask(title: string, listId: string) {
+    //console.log("Function gets title successfully")
+    return this.webReqService.post(`lists/${listId}/tasks`, {title})
+  }
 }

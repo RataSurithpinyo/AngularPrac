@@ -1,0 +1,14 @@
+<div class="centered-content">
+    <div class="modal-box">
+        <h1 class="title">Create a new Task</h1>
+        <div class="field is-grouped">
+            <p class="control is-expanded">
+              <input #taskTitleInput class="input has-background-light is-medium" type="text" placeholder="Enter a task name">
+            </p>
+        </div>
+        <div class="button-bar">
+            <button class="button is-info is-inverted" routerLink="/">Cancel</button>
+            <button class="button is-info" style="margin-left: 7px;" (click)="createTask(taskTitleInput.value)">Create</button>
+        </div>
+    </div>
+</div>
