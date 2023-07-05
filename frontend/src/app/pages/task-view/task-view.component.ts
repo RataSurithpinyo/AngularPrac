@@ -10,6 +10,7 @@ import { TaskService } from 'src/app/task.service';
 export class TaskViewComponent implements OnInit {
   lists: any;
   tasks: any;
+  countTask: number = 0;
 
   constructor(private taskService: TaskService, private route: ActivatedRoute) { }
   ngOnInit() {
@@ -18,6 +19,7 @@ export class TaskViewComponent implements OnInit {
       if (params['listId'] != undefined) {
         this.taskService.getTasks(params['listId']).subscribe((tasks) => { //getting the response back
           this.tasks = tasks
+          this.countTask = this.tasks.length
         })
       }
     })
